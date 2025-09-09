@@ -16,7 +16,7 @@ public class ShortlinksController implements ShortlinkApi {
 
     @Override
     public ResponseEntity<CreateShortUrlResponse> createShortUrl(CreateShortUrlRequest createShortUrlRequest) {
-        return null;
+        return ResponseEntity.ok(shortlinksService.shortenUrl(createShortUrlRequest));
     }
 
     @Override
