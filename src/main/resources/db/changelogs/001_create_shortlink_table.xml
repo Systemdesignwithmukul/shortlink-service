@@ -1,0 +1,26 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" xmlns:pro="http://www.liquibase.org/xml/ns/pro" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/pro http://www.liquibase.org/xml/ns/pro/liquibase-pro-latest.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd">
+    <changeSet author="Mukul Chauhan (generated)" id="1739342351100-1">
+        <createTable tableName="shortlinks">
+            <column autoIncrement="true" name="id" type="BIGINT">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="shortlinksPK"/>
+            </column>
+            <column name="created_at" type="datetime"/>
+            <column name="updated_at" type="datetime"/>
+            <column name="expiration_date" type="datetime"/>
+            <column name="original_url" type="VARCHAR(2048)"/>
+            <column name="original_url_hash" type="VARCHAR(64)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="short_code" type="VARCHAR(255)"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="Mukul Chauhan (generated)" id="1739342351100-2">
+        <addUniqueConstraint columnNames="original_url_hash" constraintName="UC_SHORTLINKSORIGINAL_URL_HASH_COL" tableName="shortlinks"/>
+    </changeSet>
+    <changeSet author="Mukul Chauhan (generated)" id="1739342351100-3">
+        <createIndex indexName="idx_short_code" tableName="shortlinks">
+            <column name="short_code"/>
+        </createIndex>
+    </changeSet>
+</databaseChangeLog>
