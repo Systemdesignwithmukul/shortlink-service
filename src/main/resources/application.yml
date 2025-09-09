@@ -1,0 +1,48 @@
+# Please put ALL APPLICATION Properties here
+# They might be empty or configured from AWS, however, all propertiest must be listed here
+server:
+  servlet:
+    context-path: /${spring.application.name}
+
+spring:
+  application:
+    name: shortlink-service
+  datasource:
+    url: jdbc:mysql://localhost:3306/shortlink_service
+    username: root
+    password: Mukul@2002
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    hikari:
+      connection-timeout: 20000
+      minimum-idle: 5
+      maximum-pool-size: 10
+      idle-timeout: 10000
+      max-lifetime: 1000
+      auto-commit: true
+  jpa:
+    hibernate:
+      ddl-auto: validate
+      naming:
+        physical-strategy: org.hibernate.boot.model.naming.CamelCaseToUnderscoresNamingStrategy
+    database-platform: org.hibernate.dialect.MySQLDialect
+  liquibase:
+    change-log: classpath:db/changelog-master.xml
+    enabled: true
+
+platform:
+  db:
+    name: shortlink_service
+
+management:
+  endpoints:
+    jmx:
+      exposure:
+        include:
+          - health
+          - info
+    web:
+      exposure:
+        include:
+          - health
+          - info
+
